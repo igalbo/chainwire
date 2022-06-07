@@ -1,4 +1,3 @@
-import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,21 +5,30 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import "./App.css";
 import NavBar from "./components/Chart/NavBar/NavBar";
-import EurUsd from "./pages/EurUsd";
-import UsdGbp from "./pages/UsdGbp";
+import InfoPage from "./pages/InfoPage";
 
 function App() {
   return (
-    <Router>
-      <NavBar />
-      <Routes>
-        <Route path="/eur_usd" element={<EurUsd />} />
-        <Route path="/usd_gbp" element={<UsdGbp />} />
-
-        <Route path="*" element={<Navigate to="/eur_usd" replace />} />
-      </Routes>
-    </Router>
+    <div className="App">
+      <header>
+        <h1>Currency Exchange Rate</h1>
+      </header>
+      <Router>
+        <NavBar />
+        <div className="main-content">
+          <Routes>
+            <Route path="/pairs/:pair" element={<InfoPage />} />
+            <Route
+              path="*"
+              element={<Navigate to="/pairs/eur_usd" replace />}
+            />
+          </Routes>
+        </div>
+      </Router>
+      <footer>Made by Igal Bogopolsky for Chainwire</footer>
+    </div>
   );
 }
 
