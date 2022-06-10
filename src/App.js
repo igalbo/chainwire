@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import NavBar from "./components/Chart/NavBar/NavBar";
+import NavBar from "./components/NavBar/NavBar";
 import InfoPage from "./pages/InfoPage";
 
 function App() {
