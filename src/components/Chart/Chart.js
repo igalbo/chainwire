@@ -11,15 +11,14 @@ import {
 
 import "./Chart.css";
 
-const Chart = ({ start, end }) => {
+const Chart = ({ start, end, rates }) => {
   const data = [];
   const range = differenceInDays(end, start) + 1;
-  // (Date.parse(end) - Date.parse(start)) / (1000 * 60 * 60 * 24) + 1;
 
   for (let num = 0; num < range; num++) {
     data.push({
       date: addDays(start, num).toString().substring(0, 10),
-      value: 1 + Math.random(),
+      value: rates[num],
     });
   }
 
@@ -34,24 +33,14 @@ const Chart = ({ start, end }) => {
           </linearGradient>
         </defs>
         <Area dataKey="value" stroke="#2451B7" fill="url(#color)" />
-        <XAxis
-          dataKey="date"
-          axisLine={false}
-          tickLine={false}
-          // tickFormatter={(str) => {
-          //   const date = parseISO(str);
-          //   if (date.getDate() % 7 === 0) {
-          //     return format(date, "MMM, d");
-          //   }
-          //   return "";
-          // }}
-        />
+        <XAxis dataKey="date" axisLine={false} tickLine={false} />
         <YAxis
           dataKey="value"
           axisLine={false}
           tickLine={false}
           tickCount={8}
-          tickFormatter={(number) => `$${number.toFixed(2)}`}
+          tickFormatter={(number) => `$${number.toFixed(4)}`}
+          domain={["auto", "auto"]}
         />
         <Tooltip content={<CustomTooltip />} />
         <CartesianGrid opacity={0.3} vertical={false} />
@@ -66,7 +55,7 @@ function CustomTooltip({ active, payload, label }) {
       <div className="tooltip">
         <h4>{label}</h4>
         {/* <h4>{format(parseISO(label), "eee d MMM, yyyy")}</h4> */}
-        <p>{payload[0].value.toFixed(2)}</p>
+        {payload && <p>{payload[0].value.toFixed(6)}</p>}
       </div>
     );
   }
