@@ -1,4 +1,4 @@
-import { format, parseISO, addDays, differenceInDays } from "date-fns";
+import { addDays, differenceInDays } from "date-fns";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -11,7 +11,7 @@ import {
 
 import "./Chart.css";
 
-const Chart = ({ start, end, rates }) => {
+const Chart = ({ start, end, rates, currency }) => {
   const data = [];
   const range = differenceInDays(end, start) + 1;
 
@@ -22,9 +22,8 @@ const Chart = ({ start, end, rates }) => {
     });
   }
 
-  console.dir(data);
   return (
-    <ResponsiveContainer height={400}>
+    <ResponsiveContainer height={360}>
       <AreaChart data={data}>
         <defs>
           <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
@@ -42,20 +41,23 @@ const Chart = ({ start, end, rates }) => {
           tickFormatter={(number) => `$${number.toFixed(4)}`}
           domain={["auto", "auto"]}
         />
-        <Tooltip content={<CustomTooltip />} />
+        <Tooltip content={<CustomTooltip currency={currency} />} />
         <CartesianGrid opacity={0.3} vertical={false} />
       </AreaChart>
     </ResponsiveContainer>
   );
 };
 
-function CustomTooltip({ active, payload, label }) {
+function CustomTooltip({ active, payload, label, currency }) {
   if (active) {
     return (
       <div className="tooltip">
         <h4>{label}</h4>
-        {/* <h4>{format(parseISO(label), "eee d MMM, yyyy")}</h4> */}
-        {payload && <p>{payload[0].value.toFixed(6)}</p>}
+        {payload && (
+          <p>
+            {currency} {payload[0].value.toFixed(6)}
+          </p>
+        )}
       </div>
     );
   }

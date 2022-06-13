@@ -23,26 +23,20 @@ const InfoPage = () => {
   ]);
 
   useEffect(() => {
-    try {
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          start_date: state[0].startDate,
-          end_date: state[0].endDate,
-          base_currency: base_currency,
-          currency: currency,
-        },
-      })
-        .then((results) => results.json())
-        .then(({ data }) => setRates(data))
-        .catch((err) => console.log(err.message));
-    } catch (err) {
-      console.log(err);
-    }
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        start_date: state[0].startDate,
+        end_date: state[0].endDate,
+        base_currency: base_currency,
+        currency: currency,
+      },
+    })
+      .then((results) => results.json())
+      .then(({ data }) => setRates(data))
+      .catch((err) => console.log(err.message));
   }, [state, base_currency, currency]);
-
-  console.log(pair);
 
   return (
     <div>
@@ -52,12 +46,15 @@ const InfoPage = () => {
         moveRangeOnFirstSelection={false}
         ranges={state}
       />
-      {rates && (
+      {rates ? (
         <Chart
           start={state[0].startDate}
           end={state[0].endDate}
           rates={rates}
+          currency={currency}
         />
+      ) : (
+        <p>No data to show</p>
       )}
     </div>
   );
