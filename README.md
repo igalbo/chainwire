@@ -37,7 +37,7 @@ Deployment: https://chainwire-server.herokuapp.com/
 
 As well as a MongoDB Atlas database and a remote json file with rates data (currency api required a paid subscription).
 
-When date ranges are selected, the app fetched the requested dates and pairs from the backend server.
+When date ranges are selected, the app fetches the requested dates and pairs from the backend server.
 
 The backend checks if the exact ranges already exist in the MongoDB database.
 - If they do, it returns it to the app and a chart is drawn.
