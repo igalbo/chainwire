@@ -3,6 +3,7 @@
   font-family: arial;
   max-width: 800px;
   margin: 0 auto;
+  /* align-items: center; */
   padding: 0 16px;
   display: flex;
   flex-direction: column;
@@ -10,6 +11,7 @@
 }
 
 .main-content {
+  /* align-items: stretch; */
   flex-grow: 1;
 }
 

@@ -15,18 +15,18 @@ function App() {
       <header>
         <h1>Currency Exchange Rate</h1>
       </header>
-      <Router>
-        <NavBar />
-        <div className="main-content">
+      <div className="main-content">
+        <Router>
+          <NavBar />
           <Routes>
-            <Route path="/pairs/:pair" element={<InfoPage />} />
+            <Route path="pairs/:pair" element={<InfoPage />} />
             <Route
               path="*"
               element={<Navigate to="/pairs/eur_usd" replace />}
             />
           </Routes>
-        </div>
-      </Router>
+        </Router>
+      </div>
       <footer>Made by Igal Bogopolsky for Chainwire</footer>
     </div>
   );
