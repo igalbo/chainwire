@@ -44,4 +44,4 @@ The backend checks if the exact ranges already exist in the MongoDB database.
 - If not, the server then searches for a wider range of dates in our database from which we can extract the requested range. If they exist, it extracts the requested dates and sends to the app.
 - Lastly, if neither is found, the backend fetches the data from the remote json file, stores it in the database and sends to the app.
 
-\*Since the json files are static, they currently have dates ranging from June 12, 2021 to June 20, 2022 (I "invented" the dates from June 11, 2022 to June 20, 2022)
+\*Since the json files are static, they currently have dates ranging from June 12, 2021 to June 20, 2022 (I "invented" data June 11, 2022 to June 20, 2022)
