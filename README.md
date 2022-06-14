@@ -9,11 +9,17 @@ Deployment: https://igalbo.github.io/chainwire
 In this project I used:
 
 - React Router for navigation:
+
   -- I chose to use "useParams" to navigate between currency pairs, as this makes it easy to add pairs in the future, and keeps it DRY
+
   -- HashRouter instead of BrowserRouter for easier deployment on GitHub pages
+
 - React Date Range:
+
   -- I was considering using MaterialUI's component, but didn't want to install the whole mui package (some features required a "pro" subscription due to a recent change), so I decided to go with this one
+
 - Date Fns - for easier date manipulation
+
 - Recharts - chart
 
 ### How this app works behind the scenes
@@ -31,3 +37,5 @@ If they do, it returns it to the app and a chart is drawn.
 If not, the server then searches for a wider range of dates in our database from which we can extract the requested range.
 If they exist, it extracts the requested dates and sends to the app.
 Laastly, if neither is found, the backend fetches the data from the remote json file, stores it in the database and sends to the app.
+
+\*Since the json files are static, They currently have dates ranging from June 12, 2021 to June 20, 2022 (I "invented" the dates from June 11, 2022 to June 20, 2022)
